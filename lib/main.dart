@@ -41,9 +41,14 @@ class _MyApp extends State<MyApp> {
   String inputValue = "";
   String sign = "";
   bool dot = false;
+  bool called = false;
 
   void input(String val) {
     setState(() {
+      if (called) {
+        clear();
+        called = false;
+      }
       if (val == "+" || val == "-" || val == "/" || val == "%" || val == "*") {
         if (sign == "") {
           sign += val;
@@ -123,6 +128,7 @@ class _MyApp extends State<MyApp> {
           inputValue = (one % two).toString();
         }
       }
+      called = true;
     });
   }
 
